@@ -1,0 +1,64 @@
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    width: 18px;
+    height: 18px;
+    background-color: #FFFFFF;
+
+    border: 1px solid #D4D5D8;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+
+    transition: border-color 0.2s ease;
+}
+
+input[type="checkbox"]:hover {
+    border-color: #B0B1B5;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #FFFFFF;
+    border: 1px solid #D4D5D8;
+    position: relative;
+}
+
+input[type="checkbox"]:checked::before {
+    content: "";
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" viewBox="0 0 14 12" fill="none"><g clip-path="url(%23clip0_1_135)"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.6498 0.260602C12.254 -0.0542347 11.603 0.112756 11.2229 0.60522L6.01065 7.04554C5.93085 7.14552 5.7282 7.18062 5.62425 7.11467L2.40915 5.08632C1.902 4.7183 1.2552 4.74383 0.966455 5.15546C0.685055 5.55751 0.777455 6.21271 1.1859 6.71262L4.87035 11.2161C5.17905 11.5926 5.5791 11.8 5.997 11.8C6.48525 11.8 6.93675 11.5171 7.23285 11.0257L12.7601 1.86244C13.1118 1.27957 13.0646 0.591393 12.6498 0.260602Z" fill="%232E3640"/></g><defs><clipPath id="clip0_1_135"><rect width="12.6" height="11.7" fill="white" transform="translate(0.600006 0.100006)"/></clipPath></defs></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    position: absolute;
+    width: 14px;
+    height: 12px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input[type="checkbox"]:indeterminate {
+    background-color: #FFFFFF;
+    border: 1px solid #D4D5D8;
+    position: relative;
+}
+
+input[type="checkbox"]:indeterminate::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 2px;
+    background-color: #2E3640;
+    border-radius: 1px;
+}

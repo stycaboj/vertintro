@@ -9,7 +9,7 @@ import { CategoryModel } from '../core/models/category.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { liveQuery } from 'dexie';
-import { db } from '../core/services/indexed.db'
+import { db } from '../core/services/indexed.db';
 
 @Component({
   selector: 'app-root',
@@ -25,9 +25,7 @@ export class AppComponent {
   public selectedStagesCount = signal<number>(0);
   public categoryArray = signal<CategoryModel[]>([]);
 
-  constructor(
-    private readonly elementRef: ElementRef,
-  ) {}
+  constructor(private readonly elementRef: ElementRef) {}
 
   public ngOnInit(): void {
     liveQuery(() => db.categories.toArray()).subscribe((categories) => {
@@ -70,7 +68,11 @@ export class AppComponent {
 
   public updateSelectedCount(): void {
     this.selectedCategoriesCount.set(
-      this.categoryArray().filter((category) => category.isSelected).length
+      this.categoryArray().filter(
+        (category) =>
+          category.isSelected ||
+          category.stages.some((stage) => stage.isSelected)
+      ).length
     );
   }
 
@@ -88,7 +90,9 @@ export class AppComponent {
   }
 
   public atLeastOneSelected(): boolean {
-    return this.categoryArray().some((category) => category.stages.some((stage) => stage.isSelected));
+    return this.categoryArray().some((category) =>
+      category.stages.some((stage) => stage.isSelected)
+    );
   }
 
   public areAllSelected(): boolean {
